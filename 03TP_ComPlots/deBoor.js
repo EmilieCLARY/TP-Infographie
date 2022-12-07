@@ -6,6 +6,7 @@
  * @param {Array} c Tableau de points de contrôle
  * @param {Number} p Degré
  */
+
 function deBoor(k, x, t, c, p) {
     let d = []
     let alpha = 0;
