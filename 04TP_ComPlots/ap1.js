@@ -65,9 +65,46 @@ let aint = [{
 
 let lettrea = [aext, aint];
 
+let jint = [{
+    x: -0.4,
+    y: 2,
+    z: 0
+}, {
+    x: -0.3,
+    y: -0,
+    z: 0
+}, {
+    x:-0.6,
+    y: 0.6,
+    z : 0
+},
+]
+
+let jext = [{
+    x: -0.2,
+    y: 2,
+    z: 0
+}, {
+    x: -0.1,
+    y: -0.,
+    z: 0
+}, {
+    x:-0.6,
+    y: 0.2,
+    z : 0
+},
+]
+
+let lettrej = [jext, jint]
+
 let uext = [{
     x: 0,
-    y: 1,
+    y: 2,
+    z: 0
+}
+    , {
+    x: 0,
+    y: 0.75,
     z: 0
 }
     , {
@@ -82,29 +119,38 @@ let uext = [{
 }
     , {
     x: 1,
-    y: 1,
+    y: 0.75,
+    z: 0
+}
+    , {
+    x: 1,
+    y: 2,
     z: 0
 }
     ,]
 
 let uint = [{
-    x: 0.25,
-    y: 1,
+    x: 0.15,
+    y: 2,
     z: 0
 }
     , {
-    x: 0,
+    x: 0.15,
+    y: 0.25,
+    z: 0
+}, {
+    x: 0.5,
     y: 0.25,
     z: 0
 }
     , {
-    x: 1,
+    x: 0.85,
     y: 0.25,
     z: 0
 }
     , {
-    x: 0.75,
-    y: 1,
+    x: 0.85,
+    y: 2,
     z: 0
 }
     ,]
@@ -112,38 +158,139 @@ let uint = [{
 let lettreu = [uext, uint];
 
 let next = [{
-        x: 1,
-        y: 1,
-        z: 0
-    }
+    x: 1,
+    y: 2,
+    z: 0
+}, {
+    x: 2,
+    y: -0.75,
+    z: 0
+}
     , {
-        x: 1.50,
-        y: -0.25,
-        z: 0
-    }
-    , {
-        x: 1.5,
-        y: 1,
-        z: 0
-    }]
+    x: 1.8,
+    y: 2,
+    z: 0
+}]
 
 let nint = [{
-    x: 0.75,
-    y: 1,
+    x: 1,
+    y: 1.6,
     z: 0
 }
     , {
-    x: 1.60,
-    y: -0.50,
+    x: 1.70,
+    y: -0.250,
+    z: 0
+}, {
+    x: 2,
+    y: -0.250,
     z: 0
 }
     , {
-    x: 1.60,
-    y: 1,
+    x: 2,
+    y: 2,
     z: 0
 }]
 
 let lettren = [next, nint];
+
+let iint = [
+    {
+        x: 2.2,
+        y: 2,
+        z: 0
+    },
+
+    {
+        x: 2.2,
+        y: 1.5,
+        z: 0
+    },
+
+    {
+        x: 2.2,
+        y: 0.5,
+        z: 0
+    }
+    , {
+        x: 2.2,
+        y: 0,
+        z: 0
+    },
+    {
+        x: 2.4,
+        y: 0,
+        z: 0
+    },
+    {
+        x: 2.6,
+        y: 0,
+        z: 0
+    },
+    {
+        x: 2.6,
+        y: 0.5,
+        z: 0
+    },
+
+    {
+        x: 2.6,
+        y: 1.5,
+        z: 0
+    }
+    , {
+        x: 2.6,
+        y: 2,
+        z: 0
+    },
+
+    {
+        x: 2.4,
+        y: 2,
+        z: 0
+    },
+    {
+        x: 2.2,
+        y: 2,
+        z: 0
+    }
+]
+
+let iext = [
+    {
+        x: 2.2,
+        y: 2.6,
+        z: 0
+    }
+    , {
+        x: 2.2,
+        y: 2.2,
+        z: 0
+    }, {
+        x: 2.4,
+        y: 2.2,
+        z: 0
+    }, {
+        x: 2.6,
+        y: 2.2,
+        z: 0
+    }
+    , {
+        x: 2.6,
+        y: 2.6,
+        z: 0
+    }, {
+        x: 2.4,
+        y: 2.6,
+        z: 0
+    }, {
+        x: 2.2,
+        y: 2.6,
+        z: 0
+    }
+]
+
+let lettrei = [iext, iint]
 
 // points.forEach(point => {
 //     const geometry = new THREE.BufferGeometry().setFromPoints(points);
@@ -190,9 +337,28 @@ let lettren = [next, nint];
 //         scene.add(sphere);
 //         scene.add(displayPoly);
 //     });
-//     Bernstein(element);
+//     //Bernstein(element);
 //     displayCurve(Casteljau(element))
 // });
+
+lettrej.forEach(element => {
+    element.forEach(point => {
+        const geometry = new THREE.BufferGeometry().setFromPoints(element);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+        const geometrySphere = new THREE.SphereGeometry(0.05, 32, 16);
+        const sphere = new THREE.Mesh(geometrySphere, material);
+        sphere.position.x = point.x
+        sphere.position.y = point.y
+
+        let displayPoly = new THREE.Line(geometry, materialPoly);
+
+        scene.add(sphere);
+        scene.add(displayPoly);
+    });
+    // Bernstein(element);
+    displayCurve(Casteljau(element))
+});
 
 lettreu.forEach(element => {
     element.forEach(point => {
@@ -209,7 +375,7 @@ lettreu.forEach(element => {
         scene.add(sphere);
         scene.add(displayPoly);
     });
-    Bernstein(element);
+    // Bernstein(element);
     displayCurve(Casteljau(element))
 });
 
@@ -228,7 +394,26 @@ lettren.forEach(element => {
         scene.add(sphere);
         scene.add(displayPoly);
     });
-    Bernstein(element);
+    // Bernstein(element);
+    displayCurve(Casteljau(element))
+});
+
+lettrei.forEach(element => {
+    element.forEach(point => {
+        const geometry = new THREE.BufferGeometry().setFromPoints(element);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+        const geometrySphere = new THREE.SphereGeometry(0.05, 32, 16);
+        const sphere = new THREE.Mesh(geometrySphere, material);
+        sphere.position.x = point.x
+        sphere.position.y = point.y
+
+        let displayPoly = new THREE.Line(geometry, materialPoly);
+
+        scene.add(sphere);
+        scene.add(displayPoly);
+    });
+    // Bernstein(element);
     displayCurve(Casteljau(element))
 });
 
