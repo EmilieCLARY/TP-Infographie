@@ -9,61 +9,85 @@ scene.background = new THREE.Color(0, 0, 0);
 
 
 let aext = [{
-    x: 0,
-    y: -3,
+    x: 2.8,
+    y: 0.25,
     z: 0
 }, {
-    x: 0,
-    y: 0,
-    z: 0,
-}, {
-    x: 1,
-    y: 0,
-    z: 0
-},
-{
-    x: 1,
-    y: 0,
-    z: 0
-},
-{
-    x: 2,
-    y: 0,
+    x: 2.8,
+    y: 1.75,
     z: 0
 }, {
-    x: 2,
-    y: -3,
+    x: 3.1,
+    y: 2.15,
+    z: 0
+}, {
+    x: 3.3,
+    y: 2.15,
+    z: 0
+}, {
+    x: 3.5,
+    y: 2.15,
+    z: 0
+}, {
+    x: 3.8,
+    y: 1.75,
+    z: 0
+}, {
+    x: 3.8,
+    y: 0.25,
     z: 0
 }]
 
-let aint = [{
-    x: 1.6,
-    y: -3,
-    z: 0
-}, {
-    x: 1.6,
-    y: -0.4,
-    z: 0,
-}, {
-    x: 1,
-    y: -0.4,
-    z: 0
-},
-{
-    x: 1,
-    y: -0.4,
-    z: 0
-}, {
-    x: 0.4,
-    y: -0.4,
-    z: 0
-}, {
-    x: 0.4,
-    y: -3,
-    z: 0
-}]
+let aint = [
+    {
+        x: 3,
+        y: 0.25,
+        z: 0
+    },
+    {
+        x: 3,
+        y: 1.75,
+        z: 0
+    }, {
+        x: 3.3,
+        y: 2.15,
+        z: 0
+    }, {
+        x: 3.6,
+        y: 1.75,
+        z: 0
+    }, {
+        x: 3.6,
+        y: 0.25,
+        z: 0
+    }]
 
-let lettrea = [aext, aint];
+
+let abarre1 = [
+    {
+        x: 3.6,
+        y: 1,
+        z: 0
+    }, {
+        x: 3,
+        y: 0.75,
+        z: 0
+    }
+]
+
+let abarre2 = [
+    {
+        x: 3.6,
+        y: 1.25,
+        z: 0
+    }, {
+        x: 3,
+        y: 1,
+        z: 0
+    }
+]
+
+let lettrea = [aext, aint, abarre1, abarre2];
 
 let jint = [{
     x: -0.4,
@@ -74,10 +98,44 @@ let jint = [{
     y: -0,
     z: 0
 }, {
-    x:-0.6,
+    x: -0.6,
     y: 0.6,
-    z : 0
+    z: 0
 },
+]
+
+let jpoint = [
+    {
+        x: -0.4,
+        y: 2.6,
+        z: 0
+    }
+    , {
+        x: -0.4,
+        y: 2.2,
+        z: 0
+    }, {
+        x: -0.3,
+        y: 2.2,
+        z: 0
+    }, {
+        x: -0.2,
+        y: 2.2,
+        z: 0
+    }
+    , {
+        x: -0.2,
+        y: 2.6,
+        z: 0
+    }, {
+        x: -0.3,
+        y: 2.6,
+        z: 0
+    }, {
+        x: -0.4,
+        y: 2.6,
+        z: 0
+    }
 ]
 
 let jext = [{
@@ -89,13 +147,13 @@ let jext = [{
     y: -0.,
     z: 0
 }, {
-    x:-0.6,
+    x: -0.6,
     y: 0.2,
-    z : 0
+    z: 0
 },
 ]
 
-let lettrej = [jext, jint]
+let lettrej = [jext, jint, jpoint]
 
 let uext = [{
     x: 0,
@@ -322,24 +380,24 @@ let lettrei = [iext, iint]
 // });
 
 
-// lettrea.forEach(element => {
-//     element.forEach(point => {
-//         const geometry = new THREE.BufferGeometry().setFromPoints(element);
-//         const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+lettrea.forEach(element => {
+    element.forEach(point => {
+        const geometry = new THREE.BufferGeometry().setFromPoints(element);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
 
-//         const geometrySphere = new THREE.SphereGeometry(0.05, 32, 16);
-//         const sphere = new THREE.Mesh(geometrySphere, material);
-//         sphere.position.x = point.x
-//         sphere.position.y = point.y
+        const geometrySphere = new THREE.SphereGeometry(0.05, 32, 16);
+        const sphere = new THREE.Mesh(geometrySphere, material);
+        sphere.position.x = point.x
+        sphere.position.y = point.y
 
-//         let displayPoly = new THREE.Line(geometry, materialPoly);
+        let displayPoly = new THREE.Line(geometry, materialPoly);
 
-//         scene.add(sphere);
-//         scene.add(displayPoly);
-//     });
-//     //Bernstein(element);
-//     displayCurve(Casteljau(element))
-// });
+        scene.add(sphere);
+        scene.add(displayPoly);
+    });
+    //Bernstein(element);
+    displayCurve(Casteljau(element))
+});
 
 lettrej.forEach(element => {
     element.forEach(point => {
